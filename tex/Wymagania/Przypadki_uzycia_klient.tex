@@ -1,7 +1,14 @@
 \subsubsection{Opis przypadków użycia - klient}
 
+Opis przypadków użycia wyjaśniające funkcjonalności związane z zarządzaniem
+klientami:
+
 \begin{enumerate}
-  \item Rejestracja klienta - aktor: Klient
+  \item Rejestracja klienta \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Klient \\
+  Opis: & Możliwość rejestracji nowego klienta.\\
+  \end{tabularx}
    \begin{enumerate}
     \item Klient uruchamia stronę internetową sklepu i wybiera opcję rejestracji
     \item Klient wstawia swoje dane osobowe i wybiera domyślny model płatności
@@ -12,7 +19,11 @@
     \item W ciągu określonego, zdefiniowanego czasu klient wybiera przesłany w
     e-mailu link, stają się pełnoprawnym użytkownikiem sklepu
   \end{enumerate}
-  \item Złożenie zamówienia - aktor: Klient
+  \item Złożenie zamówienia \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Klient \\
+  Opis: & Przedstawienie sposobu złożenia zamówienia.\\
+  \end{tabularx}
   \begin{enumerate}
     \item Klient uruchamia stronę internetową sklepu i wyszukuje interesujące go
     produkty
@@ -34,7 +45,11 @@
     \item System wysyła do użytkownika e-mail potwierdzający wraz z przewidywaną
     datą realizacji zamówienia
   \end{enumerate} 
-  \item Edycja danych klienta - aktor: Klient
+  \item Edycja danych klienta \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Klient \\
+  Opis: & Możliwość zmiany, uzupełnienia danych osobowych klienta.\\
+  \end{tabularx}
   \begin{enumerate}
     \item Klient uruchamia witrynę internetową sklepu
     \item Klient loguje się do systemu (tylko osoba zalogowana może zmieniać
@@ -47,7 +62,11 @@
     \item System wysyła na podany przez użytkownika adres e-mail (nowy, jeśli
     to adres e-mail był jedną ze zmienianych wartości) informację o zmianie.
   \end{enumerate}
-  \item Wyrejestrowanie się klienta - aktor: Klient
+  \item Wyrejestrowanie się klienta \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Klient \\
+  Opis: & Klient ma możliwość w każdym momencie usunąć swoje konto z systemu.\\
+  \end{tabularx}
   \begin{enumerate}
     \item Klient uruchamia witrynę internetową i loguje się na swoje konto
     (przypadek użycia Logowanie Do Systemu)
@@ -66,7 +85,12 @@
     \item W przypadku braku ponownej rejestracji dane zostają na stałe usunięte
     z firmowej bazy danych
   \end{enumerate}
-  \item Usunięcie klienta - aktor: Pracownik
+  \item Usunięcie klienta \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Pracownik \\
+  Opis: & Klienta można usunąć administracyjnie na przykład z powodów
+  naruszenia regulaminu.\\
+  \end{tabularx}
   \begin{enumerate}
     \item Pracownik sklepu wyszukuje klienta o konkretnym imieniu i nazwisku
     (lub według innych kryteriów)
