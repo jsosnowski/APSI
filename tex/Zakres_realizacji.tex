@@ -1,0 +1,79 @@
+\section{Zakres realizacji}
+
+Niniejszy rozdział prezentuje specyfikację wymagań odnośnie sposobu realizacji
+projektu. Nakreślając role poszczególnych zespołów oraz główne zadania jakie
+mają realizować w ramach swoich prac.
+
+\subsection{Realizacja projektu}
+
+Projekt jest realizowany w siedzibie firmy Bike Shop sp. z.o.o.
+Umożliwi to szybkie podejmowanie decyzji w przypadku powstawania
+ewentualnych niejasności a także łatwiejsze reagowanie na przeszkody,
+jakie pojawiają się w czasie procesu projektowania. 
+Zleceniodawca zobowiązał się do delegacji doświadczonego pracownika, który zna
+specyfikę działania firmy oraz jej cele biznesowe. Ta osoba będzie uczestniczyć
+w projekcie bezpośrednio na etapie analizy.
+
+Zgodnie z dokumentem załączonym do umowy Zleceniodawca zobowiązał się do
+udostępnienia firmie implementującej system pomieszczenia, w których
+możliwa będzie praca zespołu projektowego. Pomieszczenia takie
+powinny charakteryzować się dostępem do szybkiego łącza
+internetowego. 
+
+\subsection{Wstępny zarys technologiczny}
+Tworzony przez zleceniobiorcę system zostanie stworzony w logice
+trójwarstwowej umożliwiającej łatwe i wydajne zarządzanie całością
+przedsięwzięcia oraz umożliwiającej dalszą modyfikację i rozbudowę.
+Podział na warstwy jest następujący:
+
+\begin{itemize}
+  \item Warstwa prezentacji odpowiada za część graficzną, reprezentację danych
+  przechowywanych w systemie oraz za umożliwienie użytkownikowi przeglądania
+  dostępnych produktów, a także złożenie zamówienia. Osobny moduł odpowiedzialny
+  jest za dostęp do administracyjnych części systemu, dostępny wyłącznie dla
+  pracowników firmy Bike Shop z.o.o.
+  \item Serwer aplikacji zawierający logikę tworzonego systemu, odpowiedzialny
+  za zarządzanie zamówieniami, komunikację pomiędzy bazą danych oraz interfejsem
+  klienckim a także wykorzystanie infrastuktury internetowej w celu zwiększenia
+  wydajności
+  \item Baza danych przechowująca informacje na temat wszystkich produktów
+  dostępnych w sklepie, klientów posiadających swoje konta oraz składanych przez
+  nich zamówieniach.
+\end{itemize}
+
+Proces projektowy systemu zostanie oparty o dwa niezależne zespoły (analityczne
+i projektowe)
+
+\subsection{Analitycy - wymagania}
+Zespół ten w ramach projektu zajmuje się prowadzeniem analizy biznesowej,
+badaniem potrzeb klientów, projektuje rozwiązania dla systemu. Jest
+odpowiedzialny za określanie wymagań (zarówno funkcjonalnych jak i
+niefunkcjonalnych). Jego zadaniem jest też dbałość o ich prawidłową realizację.
+
+Główne zadania:
+
+\begin{itemize}
+  \item Określenie wymagań stawianych przed systemem
+  \item Tworzenie specyfikacji wymagań
+  \item Tworzenie planu testów
+  \item Analiza środowiska systemowego
+  \item Tworzenie dokumentów projektowych
+  \item Odpowiedzi na wątpliwości powstałe na etapie projektowania, czy
+  implementacji
+\end{itemize}
+
+\subsection{Projektanci - wymagania}
+Zespół jest odpowiedzialny za stworzenie architektury nowopowstającego
+systemu oraz zapisanie jej w postaci dokumentacji technicznej. Wyniki prac tego
+zespołu są niezbędne dla późniejszych etapów. W czasie implementacji służą jako
+wsparcie dla programistów tworzących system.
+
+Główne zadania:
+
+\begin{itemize}
+  \item Tworzenie projektu systemu informatycznego (oddzielnie projekt
+  architektury i bazy danych)
+  \item Wybór technologii i metod realizacji systemu
+  \item Tworzenie dokumentacji technicznej wykorzystywanej podczas implementacji
+  \item Bieżące dostosowywanie wymagań do postępów prac
+\end{itemize}
