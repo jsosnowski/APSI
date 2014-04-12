@@ -2,28 +2,69 @@
 \subsection{Wymagania niefunkcjonalne}
 
 \begin{enumerate}
-  \item System powinien mieć możliwość przechowywania danych o 100 tys.
+  \item Pojemność: \\ 
+  System powinien mieć możliwość przechowywania danych o 100 tys.
   użytkowników 
-  \item System powinien obsługiwać bez znaczącego spadku wydajności 400
-  użytkowników jednocześnie 
+  \item Wydajność: \\ 
+  System powinien obsługiwać bez znaczącego spadku wydajności 400
+  użytkowników ``jednocześnie''. Zakładając, że użytkownik będzie wymagał
+  maksymalnie 20 odświeżeń widoku systemu na minutę (jedna podstrona na 3
+  sekundy). System powinien działać z wydajnością 8000 odświeżeń/minutę. 
   \item System powinien być dostępny dla klientów 24 godziny na dobę 7 dni w
   tygodniu (możliwe są przerwy konserwacyjne, jednak nie dłuższe niż 4 godziny na miesiąc pracy) 
+  \item Średni czas naprawy (MTTR - ang. Mean Time to Recover) na poziomie
+  1~godziny
   \item System powinien umożliwiać klientom dostęp z dowolnego miejsca na
-  świecie za pomocą sieci Internet 
-  \item Klient powinien mieć dostęp do wszystkich swoich danych 
-  \item Dane te powinny być chronione w zależności od ich tajności (hasło -
-  dostępne tylko w postaci wartości funkcji skrótu; adres, e-mail - dostępne konkretnemu klientowi i pracownikom) 
+  świecie za pomocą sieci Internet oraz jego działanie powinno być niezależne od
+  używanej platformy systemowo-sprzętowej użytkownika.
+  \item Dane osobowe muszą być przetwarzane zgodnie z ustawą o ochronie danych
+  osobowych z dnia 29 sierpnia 1997 r. 
+  \item Klient powinien mieć dostęp do wszystkich swoich danych (łącznie z
+  możliwością ich aktualizacji i usunięcia) zgodnie z polskim prawem
+  \item Dane te powinny być chronione w zależności od ich poziomu poufności
+  (dane do autoryzacji powinny być zabezpieczone przed możliwością odczytu nawet
+  przez administratora) 
   \item Komunikacja pomiędzy klientem (przeglądarką internetową, aplikacją
   mobilną itp.) powinna być szyfrowana w sposób uniemożliwiający odczytanie czułych informacji
-  \item Autoryzacja użytkowników powinna odbywać się za pomocą loginu i hasła
-  znanych tylko konkretnemu użytkownikowi 
-  \item System powinien nadawać użytkownikowi uprawnienia niezbędne mu do
-  poprawnego zamawiania produktów i zarządzania swoim kontem, jednak nie większe 
+  \item System powinien mieć wbudowane procedury przeciwdziałania sytuacjom
+  awaryjnym - procedury uruchamiane przez administratora
+  \begin{enumerate}
+    \item Procedury sprawdzenia spójności danych - po odzyskaniu sprawności, np.
+    po awarii sprzętu
+    \item Procedury uruchamiane w przypadku wykrycia włamania (między innymi,
+    odłączenie systemu od sieci Internet, zablokowanie modyfikacji elementów
+    systemu itp.)
+  \end{enumerate} 
+  \item System posiadać będzie hierarchię uprawnień (ról) dla użytkowników,
+  przydzielanych im w celu umożliwienia korzystania z dodatkowych
+  funkcjonalności
+  \item System domyślnie powinien nadawać użytkownikowi uprawnienia nie większe
+  niż niezbędne mu do poprawnego zamawiania produktów i zarządzania swoim
+  kontem
   \item System powinien umożliwiać automatyczne wysyłanie klientowi wiadomości
   e-mail (z prośbą o potwierdzenie zmiany hasła czy akceptacji warunków rejestracji)
   \item System powinien umożliwiać użytkownikowi zmianę (w ograniczonym stopniu)
-  już złożonego zamówienia (zmiana adresu przed wysyłką itp.) bez konieczności ingerencji pracownika sklepu 
-  \item System powinien przechowywać dane o klientach przez co najmniej 30 dni
-  po wyrejestrowaniu lub usunięciu klienta (czas ten może się zmienić z powodów prawnych)
+  już złożonego zamówienia (zmiana adresu przed wysyłką itp.) bez konieczności
+  ingerencji pracownika sklepu
+  \item System powinien być zdolny do wyświetlania informacji w wielu językach.
+  Początkowo będzie to język polski i angielski. Istnieje jednak możliwość
+  rozszerzenia o kolejne.
+  \item \label{itm:OPD} Okres Przechowywania Danych - to czas przez który będą
+  przechowywane dane użytkownika sprzed ich zmiany lub wyrejestrowania - system zapewnia
+  magazynowanie tych danych co najmniej przez 7 dni.
+  \item \label{itm:OMD} Okres Magazynowania Danych to czas 30 dni przez które
+  system powinien przechowywać dane o klientach po usunięciu konta klienta (czas ten może się
+  zmienić z powodów prawnych)
+  \item \label{itm:Platnosci} System wspiera następujące formy płatności:
+  \begin{enumerate}
+    \item Płatność gotówką
+    \item Przelew bankowy
+    \item Płatność ratalna w oparciu o zewnętrzną usługę bankową
+  \end{enumerate}
+  Waluty: polski złoty, euro, bitcoin
+  \item \label{itm:PotwierdzenieTransakcji} Forma potwierdzenia transakcji:
+  faktura albo paragon
+  \\
+  System powinien umożliwiać generowanie tych dokumentów oraz ich wydruk.
   
 \end{enumerate}

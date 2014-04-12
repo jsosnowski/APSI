@@ -17,7 +17,7 @@ klientami:
     zarejestrowany w systemie użytkownik, czy istnieje podany adres e-mail itp.)
     \item System wysyła e-mail powitalny na adres podany przez klienta
     \item W ciągu określonego, zdefiniowanego czasu klient wybiera przesłany w
-    e-mailu link, stają się pełnoprawnym użytkownikiem sklepu
+    e-mailu link, stając się pełnoprawnym użytkownikiem sklepu
   \end{enumerate}
   \item Złożenie zamówienia \\
   \begin{tabularx}{\linewidth}{ c X }
@@ -79,9 +79,9 @@ klientami:
     powrotem na konto użytkownika (z pominięciem kosztów obsługi)
     \item Klient zostaje poproszony o podanie przyczyn swojej decyzji -
     wypełnianie jest nieobowiązkowe
-    \item Dane przechowywane są przez następne 7 dni (wymaganie prawne). W tym
-    czasie klient może ponownie zarejestrować się w systemie bez utraty
-    poprzednich danych
+    \item Dane przechowywane są przez Okres Przechowywania Danych (wymaganie
+    prawne - patrz Wymagania niefunkcjonalne punkt \ref{itm:OPD}). W tym
+    czasie klient może ponownie zarejestrować się w systemie bez utraty poprzednich danych
     \item W przypadku braku ponownej rejestracji dane zostają na stałe usunięte
     z firmowej bazy danych
   \end{enumerate}
@@ -101,9 +101,10 @@ klientami:
     nieotrzymanych płatności
     \item Obie informacji (z poprzednich 2 kroków) są przekazywane na podany
     przez użytkownika adres e-mail
-    \item Dane są przechowywane przez następne 30 dni - w tym czasie użytkownik
+    \item Dane są przechowywane przez Okres Magazynowania Danych (patrz
+    Wymagania Niefunkcjonalne punkt \ref{itm:OMD}) - w tym czasie użytkownik
     może złożyć reklamację i ewentualnie odzyskać dostęp do konta
-    \item Po 30 dniach, jeśli nie zostanie pozytywnie rozpatrzona prośba o
-    przywrócenie konta, dane są na stałe usuwane z bazy danych
+    \item Po tym czasie, jeśli prośba o przywrócenie konta nie zostanie
+    pozytywnie rozpatrzona, dane są na stałe usuwane z systemu
   \end{enumerate}
 \end{enumerate}

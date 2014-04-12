@@ -115,7 +115,7 @@ zamówieniami.
 	  \item Z listy zamówień pracownik wybiera jedno i wybiera opcję Zmiana formy
 	  płatności
 	  \item System prezentuje widok wyboru pomiędzy dostępnymi formami płatności
-	  (specyfikacja w wymaganiach niefunkcjonalnych)
+	  (specyfikacja w wymaganiach niefunkcjonalnych punkt \ref{itm:Platnosci})
 	  \item Pracownik dokonuje wyboru formy oraz waluty.
 	  \item System powiadamia klienta o zmianie formy płatności drogą elektroniczną.
 	\end{enumerate}
@@ -131,7 +131,8 @@ zamówieniami.
 	  \item Z listy zamówień pracownik wybiera jedno i wybiera opcję Zmiana
 	  Potwierdzenia Transakcji
 	  \item System prezentuje widok wyboru pomiędzy dostępnymi sposobami
-	  potwierdzenia (udokumentowania) prowadzonej transakcji.
+	  potwierdzenia (udokumentowania) prowadzonej transakcji (wymagania
+	  niefunkcyjne punkt \ref{itm:PotwierdzenieTransakcji})
 	  \item Pracownik dokonuje wyboru oraz może uruchomić proces generacji
 	  dokumentu.
 	  \item W przypadku generacji dokumenty system wyświetla go pracownikowi.
@@ -157,21 +158,29 @@ zamówieniami.
 	  klienta albo do drukarki.
 	\end{enumerate}
 
-  \item Zarządzanie terminem dostawy\\
+  \item Zarządzanie dostawą\\
   \begin{tabularx}{\linewidth}{c X}
   Aktor: & Pracownik \\
-  Opis: & Termin realizacji zamówienia może być modyfikowany dowolnie w
-  zależności od możliwości biznesowych Sklepu.
+  Opis: & Termin realizacji zamówienia oraz sposób dostawy mogą być
+  modyfikowany dowolnie w zależności od możliwości biznesowych Sklepu i
+  aktualnego stanu zamówienia.
   \end{tabularx}
 	\begin{enumerate}
-	  \item Z listy zamówień pracownik wybiera jedno i wybiera opcję Edycji Daty
-	  Realizacji
+	  \item Z listy zamówień użytkownik wybiera jedno i wybiera opcję Edycji
+	  Dostawy
+	  \item System prezentuje informacje o wybranym sposobie i terminie dostawy
+	  \item Użytkownik wybiera opcję Zmiany daty realizacji
 	  \item System prezentuje widok kalendarza z zaznaczoną dotychczasową datą
 	  realizacji.
-	  \item Pracownik przesuwa datę realizacji projektu i ma możliwość podania
+	  \item Użytkownik przesuwa datę realizacji projektu i ma możliwość podania
 	  wiadomości wyjaśniającej modyfikację.
-	  \item System wysyła powiadomienie o zmianie terminu do klienta wraz z
-	  informacją wyjaśniającą wpisaną przez pracownika.
+	  \item Użytkownik wybiera opcję Zmiany sposobu dostawy
+	  \item System wyświetla wszystkie aktualnie dostępne opcje razem ze
+	  szczegółami (cena, średni czas)
+	  \item Użytkownik dokonuje wyboru środka transportu i zatwierdza zmiany
+	  \item System aktualizuje koszt całego zamówienia uwzględniając kwotę
+	  transportu oraz wysyła powiadomienie o zmianach (termin lub/i sposób dostawy)
+	  do klienta wraz z informacją wyjaśniającą wpisaną przez pracownika.
 	\end{enumerate}
 
   \item Ustawianie aktualnego stanu zamówienia\\
