@@ -1,0 +1,56 @@
+\section{Rozwiązania projektowe}
+
+Niniejszy projekt tworzony jest dla klienta zewnętrznego, firmy zajmującej się
+dystrybucją i sprzedażą rowerów. Stawiane przed deweloperami wymagania są zatem
+podobne do tych, jakie są udziałem większości zespołów zajmujących się
+implementacją rozwiązań internetowych. Celem projektu jest stworzenie
+internetowego sklepu, który umożliwiałby zarówno kupowanie (zamawianie)
+produktów związanych z szeroko pojętą branżą rowerową jak i śledzenie statusu
+takich zamówień, zarządzanie nimi oraz ich ewentualne usuwanie. System powinien
+także współpracować z pracownikami firmy Bike Shop sp. z.o.o. w zakresie obsługi
+nowych dostaw, wprowadzania i zdobywania informacji o zamówieniach oraz kontaktów z
+klientami. Działanie systemu można zatem podzielić na dwie główne kategorie:
+
+\begin{description}
+	\item[Moduł dla klientów] \hfill \\
+	Składanie zamówień, edycja wprowadzonych danych na temat klientów, wydawanie
+	opinii na temat sklepu, składanie zapytań
+	\item[Moduł dla pracowników]
+	Wprowadzanie danych o częściach rowerowych, odpowiadanie na zapytania klientów,
+	informowanie o statusach zamówień, obsługa informatyczna dostaw
+\end{description}
+
+Oba opisane powyżej moduły koncentrują się przede wszystkim na częściach
+rowerowych - to one są głównym powodem, dla którego tworzony jest projekt
+informatyczny. Oznacza to, że pomimo pozornej rozróżnienia pomiędzy zadaniami,
+jakie system ma spełniać dla użytkowników zewnętrznych (klientów) oraz
+użytkowników wewnętrznych (pracowników) należy wymagania rozpatrywać całościowo,
+bez podziału na osobne moduły. Zatem zarówno z punktu widzenia klienta jak i
+zespołu zajmującego się projektowaniem i wdrażaniem implementacji nie istnieje
+konieczność rozdziału funkcjonalności na 2 odrębne podsystemy. Istnieć może
+tylko jeden system, dysponujący pełną funkcjonalnością. Poszczególne możliwości
+dostępne będą tylko dla niektórych użytkowników, w zależności od ich roli w
+systemie czy czasu, przez jaki korzystali ze sklepu (rabaty dla stałych
+klientów itp.). Podejście takie niesie ze sobą szereg korzyści:
+
+\begin{enumerate}
+	\item Spójność tworzonego rozwiązania
+	\item Analogiczne podejście do tworzonego oprogramowania
+	\item Bardzo zbliżony interfejs graficzny
+	\item Łatwość w zmianie ustawień dotyczących poszczególnych użytkowników (role)
+	\item Łatwiejsza komunikacja pomiędzy klientami i pracownikami
+	\item Brak konieczności tworzenia osobnych, bardzo podobnych implementacji
+	\item Uspójnienie schematu - ułatwienie zarządzania
+	\item Zwiększenie wydajności
+\end{enumerate}
+
+Jedynym potencjalnym problemem płynącym z jednolitej wersji systemu mogą być
+ewentualne problemy z zapewnieniem bezpieczeństwa danych i uniemożliwienie
+osobom niepowołanych dostęp do danych, które są przeznaczone tylko dla
+specyficznych użytkowników. W czasie analizy należy zatem szczególnie zadbać o
+tę część funkcjonalności, zarówno pod względem dostępu do danych w bazie danych
+jak i inteferjsu graficznego (moduły dostępne tylko dla pracowników nie powinny
+być widoczne dla klientów, prywatne dane klientów nie powinny z kolei być
+dostępne dla nieupoważnionych pracowników).
+
+\input{tex/Rozwiazania_projektowe/Architektura.tex}
