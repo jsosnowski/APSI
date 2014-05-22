@@ -10,3 +10,73 @@ diagramy UML, które służą jako wizualna reprezentacja architektury systemu i
 pozwalają na łatwiejszą analizę stanu projektu.
 
 \input{tex/Diagramy/ClassDiagram.tex}
+
+\newpage
+Opis klas na przedstawionym diagramie:
+
+\begin{description}
+	\item[Użytkownik] \hfill \\
+		Klasa abstrakcyjna, będąca bazową dla klas Klient i Pracownik, przechowuje
+		informacje dotyczące danej osoby - imię, nazwisko, adres e-mail itp.
+	\item[Pracownik] \hfill \\
+	 	Osoba z obsługi sklepu, odpowiedzialna za realizację i zarządzanie
+	 	zamówieniami
+	\item[Stały klient] \hfill \\
+		Osoba charakteryzująca się dużą liczbą zamówień bądź długim czasem obecności
+		na stronie (czas liczony od czasu rejestracji)
+	\item[Klient] \hfill \\
+		Osoba składająca zamówienia w sklepie, edytująca swoje zamówienia i opłacająca
+		je
+	\item[Typ pracownika] \hfill \\
+		Enumeracja, będąca oznaczeniem rodzaju pracownika (Szeregowy Pracownik,
+		Kierownik itp.)
+	\item[Urlop] \hfill \\
+		Obsługa urlopów dla pracowników pod kątem czasu ich trwania, momentu ich
+		rozpoczęcia (i zakończenia) itp.
+	\item[Uprawnienia] \hfill \\
+		Obsługa uprawnień zarówno dla pracowników jak i klientów. Pozwala na
+		ustalanie, kto ma jakie uprawnienia do edycji i podglądu danych
+	\item[Wiadomość] \hfill \\
+		Treści przesyłane pomiędzy pracownikami i klientami, służące do przekazywania
+		informacji na temat zamówień
+	\item[Typ wiadomości] \hfill \\
+		Enumeracja, jaki rodzaj wiadomości jest przekazywany (Zapytanie, Edycja
+		Zamówienia itp.)
+	\item[Opinia] \hfill \\
+		Tekst na temat zamówienia, ocena poprawności i jakości realizacji zamówienia
+	\item[Typ opinii] \hfill \\
+		Enumeracja, jaka opinia została wydana (Pozytywna, Negatywna, Neutralna)
+	\item[Zamówienie] \hfill \\
+		Informacje na temat złożonego przez klienta Zamówienia
+	\item[Uwagi do zamówienia] \hfill \\
+		Wszelkiego rodzaju informacje, jakie klient chce zawrzeć w momencie złożenia
+		zamówienia - na przykład zaznaczanie wysyłki jako prezent, ustalenie, przed
+		jakim terminem zamówienie nie powinno być wysłane, czy możliwy jest odbiór
+		osobisty itp.
+	\item[Sposób płatności] \hfill \\
+		Informacja, jak użytkownik chce zapłacić za złożone zamówienie - inaczej
+		wygląda procesowanie zapłaty kartą (wysłanie następuje dopiero po wpłynięciu
+		pieniędzy, opłata za pobraniem jest uiszczana dopiero po wysłaniu)
+	\item[Część] \hfill \\
+		Pojedyncza część rowerowa wraz z informacjami na jej temat - rozmiar, nazwa,
+		cena itp.
+	\item[Zestaw] \hfill \\
+		Złożenie kilku części w jeden, funkcjonalnie sprawny rower. Przechowuje
+		informację o tym, jakie części są wymagane, ile ma ich być (rama - 1, pedały
+		-2, przerzutki - nieokreślone)
+	\item[Kategoria] \hfill \\
+		Informacja, do jakiej kategorii zaliczana jest dana część. Jest to pomocne do
+		układania zestawów i sprawdzania ich poprawności
+	\item[Dostawa] \hfill \\
+		Informacje na temat jednej dostawy, jakie części i w jakiej ilości zostały
+		dostarczone i kiedy
+	\item[Firma dostawcza] \hfill \\
+		Informacje na temat firmy, która dostarcza części - dane kontaktowe, adres
+		oraz jakie części są w stanie dostarczyć
+	\item[Magazyn] \hfill \\
+		Klasa pozwalająca na zarządzanie częściami przechowywanymi w magazynie,
+		sprawdzanie ich dostępności oraz aktualizacja stanu
+	\item[Interfejs graficzny] \hfill \\
+		Klasa będąca ``wejściem'' do diagramu klas, odpowiedzialna za podstawową,
+		wstępną integrację z użytkownikiem
+\end{description}

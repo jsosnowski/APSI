@@ -7,3 +7,129 @@ plany i kosztorysy całego projektu a także decydować o powodzeniu lub porażc
 dla klienta. Nie bez znaczenia jest także element wydajnościowy, który w
 przypadku sklepów internetowych jest jednym z kluczowych elementów całości,
 decydującym nieraz o powodzeniu całego przedsięwzięcia.
+
+W ostatnich latach zdecydowanie najpopularniejszym rozwiązaniem jest
+architektura trójwarstwowa. Dzięki niej możliwe jest łatwe rozdzielenie
+funkcjonalności na 3 główne części:
+\begin{description}
+	\item[Presentation Layer]
+	\item[Business Layer]
+	\item[Data Source]
+\end{description}
+
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth,
+    height=0.5\textheight]{graphics/threetier.jpg}
+  \caption{Ogólny schemat architektury projektowanego systemu}
+\end{figure}
+
+Każda z 3 części odpowiada za inną część związaną z procesowaniem i obsługą
+zamówień:
+\begin{description}
+	\item[Presentation Layer] \hfill \\
+		Moduł udostępniany na komputerze użytkownika, odpowiada za prezentowanie
+		oferty sklepu, zbieranie akcji wykonywanych przez użytkownika i przekazywanie
+		komunikacji do następnych warstw. Interfejs aplikacji
+	\item[Business Layer] \hfill \\
+		Moduł znajdujący się na serwerze aplikacyjnym, odpowiada za logikę całego
+		systemu, koordynuje działania odpowiadające za zarządzanie zamówieniami.
+		Przekazuje dane pomiędzy warstwami wyższą i niższą
+	\item[Data Source] \hfill \\
+		Odpowiada za trwałe przechowywanie danych a także udostępnia interfejs do ich
+		pobierania, przetwarzania i zapisywania. Realizowana zazwyczaj za pomocą
+		relacyjnych baz danych.
+\end{description}
+
+Dodatkowym modułem, niezbędnym w przypadku systemów, które będą wykorzystywane
+przez kilkuset użytkowników jednocześnie (a taka jest docelowa przepustowość
+serwerów projektowanego systemu), jest LoadBalancer, który jest odpowiedzialny
+za rozkład obciążenia na osobne serwery realizujące te same funkcjonalności i
+korzystające z tej samej bazy danych.
+
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth,
+    height=0.5\textheight]{graphics/LoadBalancer.png}
+  \caption{Schemat uwzględniający Load Balancer}
+\end{figure}
+Wybór architektury trójwarstwowej pociągnął za sobą także technologie, w których
+zaimplementowane zostaną poszczególne warstwy. Z uwagi na dużą popularność, łatwość we wprowadzaniu zmian oraz wystarczająco rozbudowaną dokumentację zdecydowano się na wykorzystanie technologii JEE. Pozwala ona na stosunkowo łatwe i szybkie wdrażanie poszczególnych rozwiązań, ułatwia także zarządzanie już istniejącym projektem.
+
+Ponieważ środowisko (zbiór technologii) Java Enterprise Edition jest bardzo
+rozbudowane i posiada szereg różnych rozwiązań, konieczny stał się wybór tych
+technologii, które w najlepszy sposób odwzierciedli i zapewni wsparcie dla
+wymagań funkcjonalnych zdefiniowanych przez klienta. 
+
+Zdecydowano się zatem na następujące rozwiązania technologiczne:
+
+\begin{description}
+\item[Frontend] \hfill \\
+Ponieważ, jak wspomniano wcześniej, zdecydowano się na tworzenie systemu,
+którego interfejs użytkownika zrealizowany jest w postaci aplikacji w
+przeglądarce internetowej, wykorzystano technologie, związane z językiem Java,
+które pozwalają na osadzenie w przeglądarce całej części wizualnej. W tym celu
+wykorzystany zostanie wykorzystany język JavaScript wraz z technologiami HTML
+oraz CSS. Pozwala to na otrzymanie wysokiej wydajności przy jednoczesnej
+prostocie obsługi i implementacji. Dodatkowe funkcjonalności realizowane będą
+także z wykorzystaniem biblioteki jQuery, która znacząco upraszcza proces
+implementacji. Połączenie z pozostałymi warstwami obsługiwane jest z
+wykorzystaniem protokołu HTTPS, co pozwala na zapewnienie bezpieczeństwa
+(poprzez szyfrowanie) przekazywanych danych.
+\item[Backend] \hfill \\
+Jako serwer aplikacyjny zostanie wykorzystany IBM WebSphere, co pozwoli na
+szybkie i łatwe implementowanie poszczególnych zależności pomiędzy modułami.
+Każdy z modułów aplikacji obsługiwany jest przez zestaw Enterprise Java Beanów,
+które zgromadzone są w kontenerze EJB. Komunikacja z bazą danych odbywa się z
+wykorzystaniem technologii mapowania relacyjno-obiektowego zdefiniowanej w Java
+Persistence API. Wybraną konkretną implementacją takiej technologii jest
+framework Hibernate.
+\item[Data Source] \hfill \\
+Zdecydowano się na relacyjną bazę danych, które z powodzeniem są stosowane w
+większości zastosowań w rozwiązaniach biznesowych i korporacyjnych od wielu lat.
+Wybranym systemem bazodanowym jest Oracle w wersji 11.2. Jest to z jednej strony
+najnowsza wersja systemu, pozwalająca na korzystanie z wielu obecnych tylko w
+niej udogodnień a z drugiej jest to wersja stabilna, bez błędów i nieścisłości
+obecnych w poprzednich edycjach wersji 11. Dane zapisywane są na zewnętrznych
+macierzach dyskowych i duplikowane w celu zapewnienia bezpieczeństwa zapisu w
+przypadku awarii.
+\end{description}
+
+
+\newpage
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth,
+    height=0.5\textheight]{graphics/component.png}
+  \caption{Architektura trójwarstwowa tworzonego systemu wraz z technologiami}
+\end{figure}
+
+Poszczegóły moduły komponentu EJB zaprezentowane są poniżej:
+\begin{description}
+  \item[Administracja] \hfill \\
+  	Zarządzanie konfiguracją systemu, zapisem danych, umożliwienie przeglądania
+  	logów
+  \item[Logowanie] \hfill \\
+  	Uwierzytelnianie użytkowników (klientów i pracowników) i ograniczanie lub
+  	nadawanie uprawnień do poszczególnych elementów systemu
+  \item[Klienci] \hfill \\
+  	Obsługa informacji o klientach
+  \item[Pracownicy] \hfill \\
+    Obsługa informacji na temat pracowników
+  \item[Części rowerowe] \hfill \\
+  	Dane o częściach rowerowych, ich cenie, rozmiarze, dostępności
+  \item[Zestawy rowerowe]
+    Konfiguracja danych z modułu Części Rowerowe w zestawy, które mogą być
+    sprzedawane całościowo
+  \item[Zamówienia]
+    Zarządzanie zamówieniami złożonymi przez klientów
+  \item[Komunikacja klient-sklep]
+    Obsługa powiadomień na temat zamówień, wymiany zapytań czy decyzji
+    dotyczących zamówień
+  \item[Komunikacja międzymodułowa]
+    Obsługa pomiędzy pozostałymi modułami komponentu, zapis logów itp.
+\end{description}
+
+
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth,
+    height=0.5\textheight]{graphics/EJB.png}
+  \caption{Widok szczegółowy kontenera EJB z podziałem na moduły}
+\end{figure}
