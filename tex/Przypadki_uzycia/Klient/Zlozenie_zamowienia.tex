@@ -1,0 +1,26 @@
+\item Złożenie zamówienia \\ 
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Klient \\
+  Opis: & Przedstawienie sposobu złożenia zamówienia.\\
+  \end{tabularx}
+  \begin{enumerate}
+    \item Klient uruchamia stronę internetową sklepu i wyszukuje interesujące go
+    produkty
+    \item W momencie znalezienia pasującego produktu użytkownik wybiera opcję
+    dodania do koszyka
+    \item Po zakończeniu wyszukiwania użytkownik wybiera opcję przejścia do kasy
+    \item System sprawdza, czy użytkownik jest zalogowany. Jeśli nie, procesuje
+    przypadek użycia Logowanie do Systemu
+    \item System sprawdza, czy użytkownik jest stałym klientem. Jeśli tak,
+    dolicza rabat do ustalonej ceny (do sumy cen poszczególnych produktów)
+    \item Użytkownik wybiera sposób płatności
+    \item System dodaje do wcześniej ustalonej ceny koszty wynikające ze sposobu
+    płatności
+    \item Użytkownik wybiera sposób dostawy (poczta, kurier, odbiór osobisty
+    itp.)
+    \item System dodaje do ceny koszty wynikające ze sposobu dostawy
+    \item Użytkownik, po sprawdzeniu wszystkich danych, decyduje się na złożenie
+    zamówienia - po tym momencie nie może już ono być cofnięte
+    \item System wysyła do użytkownika e-mail potwierdzający wraz z przewidywaną
+    datą realizacji zamówienia
+  \end{enumerate} 

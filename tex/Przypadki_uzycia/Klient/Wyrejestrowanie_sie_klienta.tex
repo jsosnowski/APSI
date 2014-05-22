@@ -1,0 +1,23 @@
+  \item Wyrejestrowanie się klienta \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Klient \\
+  Opis: & Klient ma możliwość w każdym momencie usunąć swoje konto z systemu.\\
+  \end{tabularx}
+  \begin{enumerate}
+    \item Klient uruchamia witrynę internetową i loguje się na swoje konto
+    (przypadek użycia Logowanie Do Systemu)
+    \item Klient wybiera opcję usunięcia danych
+    \item System sprawdza, czy istnieją niezrealizowane (oczekujące) zamówienia.
+    Jeśli tak, wyświetla się alert z informacją, czy dane zamówienie zostało już
+    wcześniej opłacone
+    \item Jeśli istniały już zamówienia, które zostały opłacone a nie zostały
+    jeszcze zrealizowane, system zleca odesłanie określonej kwoty pieniężnej z
+    powrotem na konto użytkownika (z pominięciem kosztów obsługi)
+    \item Klient zostaje poproszony o podanie przyczyn swojej decyzji -
+    wypełnianie jest nieobowiązkowe
+    \item Dane przechowywane są przez Okres Przechowywania Danych (wymaganie
+    prawne - patrz Wymagania niefunkcjonalne punkt \ref{itm:OPD}). W tym
+    czasie klient może ponownie zarejestrować się w systemie bez utraty poprzednich danych
+    \item W przypadku braku ponownej rejestracji dane zostają na stałe usunięte
+    z firmowej bazy danych
+  \end{enumerate}

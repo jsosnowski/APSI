@@ -1,110 +1,21 @@
 \subsubsection{Opis przypadków użycia - klient}
 
-Opis przypadków użycia wyjaśniające funkcjonalności związane z zarządzaniem
-klientami:
+Poniżej przedstawiono przypadki użycia związanie z procesowaniem i obsługą
+danych klientów. We wszystkich (poza jednym) przypadkach aktorem jest sam
+klient, jedynie wyrejestrowanie takiej osoby dokonywane jest przez uprawnionego
+pracownika sklepu.
 
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth,
+    height=0.5\textheight]{graphics/UseCase/Klient/UseCaseDiagram.png}
+  \caption{Diagram przypadków użycia związanych z procesowaniem danych klienta}
+\end{figure}
+
+\newpage
 \begin{enumerate}
-  \item Rejestracja klienta \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Klient \\
-  Opis: & Możliwość rejestracji nowego klienta.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Klient uruchamia stronę internetową sklepu i wybiera opcję rejestracji
-    \item Klient wstawia swoje dane osobowe i wybiera domyślny model płatności
-    (kartą, za pobraniem itp.)
-    \item System sprawdza wstawione dane (takie same hasła, czy istnieje już
-    zarejestrowany w systemie użytkownik, czy istnieje podany adres e-mail itp.)
-    \item System wysyła e-mail powitalny na adres podany przez klienta
-    \item W ciągu określonego, zdefiniowanego czasu klient wybiera przesłany w
-    e-mailu link, stając się pełnoprawnym użytkownikiem sklepu
-  \end{enumerate}
-  \item Złożenie zamówienia \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Klient \\
-  Opis: & Przedstawienie sposobu złożenia zamówienia.\\
-  \end{tabularx}
-  \begin{enumerate}
-    \item Klient uruchamia stronę internetową sklepu i wyszukuje interesujące go
-    produkty
-    \item W momencie znalezienia pasującego produktu użytkownik wybiera opcję
-    dodania do koszyka
-    \item Po zakończeniu wyszukiwania użytkownik wybiera opcję przejścia do kasy
-    \item System sprawdza, czy użytkownik jest zalogowany. Jeśli nie, procesuje
-    przypadek użycia Logowanie do Systemu
-    \item System sprawdza, czy użytkownik jest stałym klientem. Jeśli tak,
-    dolicza rabat do ustalonej ceny (do sumy cen poszczególnych produktów)
-    \item Użytkownik wybiera sposób płatności
-    \item System dodaje do wcześniej ustalonej ceny koszty wynikające ze sposobu
-    płatności
-    \item Użytkownik wybiera sposób dostawy (poczta, kurier, odbiór osobisty
-    itp.)
-    \item System dodaje do ceny koszty wynikające ze sposobu dostawy
-    \item Użytkownik, po sprawdzeniu wszystkich danych, decyduje się na złożenie
-    zamówienia - po tym momencie nie może już ono być cofnięte
-    \item System wysyła do użytkownika e-mail potwierdzający wraz z przewidywaną
-    datą realizacji zamówienia
-  \end{enumerate} 
-  \item Edycja danych klienta \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Klient \\
-  Opis: & Możliwość zmiany, uzupełnienia danych osobowych klienta.\\
-  \end{tabularx}
-  \begin{enumerate}
-    \item Klient uruchamia witrynę internetową sklepu
-    \item Klient loguje się do systemu (tylko osoba zalogowana może zmieniać
-    swoje dane)
-    \item Klient edytuje wybrane pozycje ze swojego opisu (adres, numer
-    telefonu itp.)
-    \item W przypadku zmiany hasła klient proszony jest o podanie starego jak i
-    nowego (dwukrotnie) hasła
-    \item Klient zatwierdza wprowadzone zmiany
-    \item System wysyła na podany przez użytkownika adres e-mail (nowy, jeśli
-    to adres e-mail był jedną ze zmienianych wartości) informację o zmianie.
-  \end{enumerate}
-  \item Wyrejestrowanie się klienta \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Klient \\
-  Opis: & Klient ma możliwość w każdym momencie usunąć swoje konto z systemu.\\
-  \end{tabularx}
-  \begin{enumerate}
-    \item Klient uruchamia witrynę internetową i loguje się na swoje konto
-    (przypadek użycia Logowanie Do Systemu)
-    \item Klient wybiera opcję usunięcia danych
-    \item System sprawdza, czy istnieją niezrealizowane (oczekujące) zamówienia.
-    Jeśli tak, wyświetla się alert z informacją, czy dane zamówienie zostało już
-    wcześniej opłacone
-    \item Jeśli istniały już zamówienia, które zostały opłacone a nie zostały
-    jeszcze zrealizowane, system zleca odesłanie określonej kwoty pieniężnej z
-    powrotem na konto użytkownika (z pominięciem kosztów obsługi)
-    \item Klient zostaje poproszony o podanie przyczyn swojej decyzji -
-    wypełnianie jest nieobowiązkowe
-    \item Dane przechowywane są przez Okres Przechowywania Danych (wymaganie
-    prawne - patrz Wymagania niefunkcjonalne punkt \ref{itm:OPD}). W tym
-    czasie klient może ponownie zarejestrować się w systemie bez utraty poprzednich danych
-    \item W przypadku braku ponownej rejestracji dane zostają na stałe usunięte
-    z firmowej bazy danych
-  \end{enumerate}
-  \item Usunięcie klienta \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Klienta można usunąć administracyjnie na przykład z powodów
-  naruszenia regulaminu.\\
-  \end{tabularx}
-  \begin{enumerate}
-    \item Pracownik sklepu wyszukuje klienta o konkretnym imieniu i nazwisku
-    (lub według innych kryteriów)
-    \item Pracownik wybiera opcję usunięcia klienta. 
-    \item Pracownik wpisuje powód, dla którego usuwa użytkownika (informacja ta
-    będzie przesłana do klienta w wiadomości e-mail)
-    \item Pracownik wypełnia dane dotyczące kwestii niezrealizowanych zamówień i
-    nieotrzymanych płatności
-    \item Obie informacji (z poprzednich 2 kroków) są przekazywane na podany
-    przez użytkownika adres e-mail
-    \item Dane są przechowywane przez Okres Magazynowania Danych (patrz
-    Wymagania Niefunkcjonalne punkt \ref{itm:OMD}) - w tym czasie użytkownik
-    może złożyć reklamację i ewentualnie odzyskać dostęp do konta
-    \item Po tym czasie, jeśli prośba o przywrócenie konta nie zostanie
-    pozytywnie rozpatrzona, dane są na stałe usuwane z systemu
-  \end{enumerate}
-\end{enumerate}
+  \input{tex/Przypadki_uzycia/Klient/Rejestracja_klienta.tex}
+  \input{tex/Przypadki_uzycia/Klient/Zlozenie_zamowienia.tex}
+  \input{tex/Przypadki_uzycia/Klient/Edycja_danych_klienta.tex}
+  \input{tex/Przypadki_uzycia/Klient/Wyrejestrowanie_sie_klienta.tex}
+  \input{tex/Przypadki_uzycia/Klient/Usuniecie_klienta.tex}
+\end{enumerate} 

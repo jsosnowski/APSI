@@ -1,0 +1,22 @@
+\item Usunięcie klienta \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Pracownik \\
+  Opis: & Klienta można usunąć administracyjnie na przykład z powodów
+  naruszenia regulaminu.\\
+  \end{tabularx}
+  \begin{enumerate}
+    \item Pracownik sklepu wyszukuje klienta o konkretnym imieniu i nazwisku
+    (lub według innych kryteriów)
+    \item Pracownik wybiera opcję usunięcia klienta. 
+    \item Pracownik wpisuje powód, dla którego usuwa użytkownika (informacja ta
+    będzie przesłana do klienta w wiadomości e-mail)
+    \item Pracownik wypełnia dane dotyczące kwestii niezrealizowanych zamówień i
+    nieotrzymanych płatności
+    \item Obie informacji (z poprzednich 2 kroków) są przekazywane na podany
+    przez użytkownika adres e-mail
+    \item Dane są przechowywane przez Okres Magazynowania Danych (patrz
+    Wymagania Niefunkcjonalne punkt \ref{itm:OMD}) - w tym czasie użytkownik
+    może złożyć reklamację i ewentualnie odzyskać dostęp do konta
+    \item Po tym czasie, jeśli prośba o przywrócenie konta nie zostanie
+    pozytywnie rozpatrzona, dane są na stałe usuwane z systemu
+  \end{enumerate}
