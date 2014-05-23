@@ -1,0 +1,89 @@
+  \item Edycja formy płatności\\
+  \begin{tabularx}{\linewidth}{c X}
+  Aktor: & Pracownik \\
+  Opis: & Pracownik ma możliwość zmiany początkowo wybranej formy płatności
+  danego zamówienia. Odbywa się to na wniosek zamawiającego lub osoby
+  odpowiedzialnej za zamówienia po stronie Sklepu.
+  \end{tabularx}    
+	\begin{enumerate}
+	  \item Z listy zamówień pracownik wybiera jedno i wybiera opcję Zmiana formy
+	  płatności
+	  \item System prezentuje widok wyboru pomiędzy dostępnymi formami płatności
+	  (specyfikacja w wymaganiach niefunkcjonalnych punkt \ref{itm:Platnosci})
+	  \item Pracownik dokonuje wyboru formy oraz waluty.
+	  \item System powiadamia klienta o zmianie formy płatności drogą elektroniczną.
+	\end{enumerate}
+
+  \item Wybór sposobu potwierdzenia zamówienia\\
+  \begin{tabularx}{\linewidth}{c X}
+  Aktor: & Pracownik \\
+  Opis: & Możliwość zmiany sposobu udokumentowania przeprowadzonej transakcji
+  (zazwyczaj będzie to faktura albo paragon). Powodem takich zmian mogą być
+  nawet regulacje prawne.
+  \end{tabularx}	
+	\begin{enumerate}
+	  \item Z listy zamówień pracownik wybiera jedno i wybiera opcję Zmiana
+	  Potwierdzenia Transakcji
+	  \item System prezentuje widok wyboru pomiędzy dostępnymi sposobami
+	  potwierdzenia (udokumentowania) prowadzonej transakcji (wymagania
+	  niefunkcyjne punkt \ref{itm:PotwierdzenieTransakcji})
+	  \item Pracownik dokonuje wyboru oraz może uruchomić proces generacji
+	  dokumentu.
+	  \item W przypadku generacji dokumenty system wyświetla go pracownikowi.
+	  \item Po akceptacji informacje o zmianie wraz z dokumentami wysyłane są drogą
+	  elektroniczną do klienta.
+	\end{enumerate}
+
+  \item Generowanie faktury pro-forma dla danego zamówienia\\
+
+  Opis słowny - niekiedy klient wymaga dokumentacji wystawionego zamówienia
+  jeszcze zanim go odbierze. Uznaną prawnie formą takiej dokumentacji jest
+  faktura pro-forma, która może być wygenerowana z danego zamówienia
+
+  \begin{longtable}{|p{5cm}|p{7cm}|}
+ 	\hline
+	\textbf{Aktor} & Pracownik \\
+	\hline
+	\textbf{Warunki początkowe} & Pracownik zalogowany, dokument generowany na
+	wniosek klienta
+	\\
+	\hline
+	\textbf{Opis przebiegu interakcji} & Wybór zarządzania zamówieniami,
+	z listy zamówień zaznaczenie konkretnego, opcja generacji faktury
+	\\
+	\hline
+	\textbf{Sytuacje wyjątkowe} & Brak żądanego zamówienia.
+	\\
+	\hline
+	\textbf{Warunki końcowe} & Wytworzona faktura pro-forma - przesłana dla
+	klienta.
+	\\
+	\hline
+ \end{longtable}
+
+  \begin{tabularx}{\linewidth}{c X}
+  Aktor: & Pracownik \\
+  Opis: & Możliwość utworzenie faktury pro-forma na podstawie danego zamówienia
+  oraz przesłanie jej klientowi drogą elektroniczną lub wydruk.
+  \end{tabularx}
+	\begin{enumerate}
+	  \item Z listy zamówień pracownik wybiera jedno i wybiera opcję Generuj
+	  Pro-Forma
+	  \item Dla wybranego zamówienia system generuje pełną fakturę po czym
+	  prezentuje ją pracownikowi
+	  \item Pracownik ma możliwość odrzucenia lub akceptacji dokumentu.
+	  \item W przypadku akceptacji system wyświetla widok wyboru z opcjami wysyłki
+	  do klienta.
+	  \item Po wybraniu pożądanej opcji przez pracownika, system wysyła dokument do
+	  klienta albo do drukarki.
+	\end{enumerate}
+
+	Generowanie faktury pro-forma - scenariusz alternatywny - brak danego
+	zamówienia
+	\begin{enumerate}
+	  \item Krok 1 z scenariusza głównego.
+	  \item System stwierdza iż poszukiwane (na wniosek klienta) zamówienie nie
+	  istnieje i pyta o rozwiązanie tego problemu
+	  \item Pracownik wybiera jedną z dostęnych opcji naprawy sytuacji
+	  \item System generuje wiadomość do klienta z zaistniałą sytuacją
+	\end{enumerate}

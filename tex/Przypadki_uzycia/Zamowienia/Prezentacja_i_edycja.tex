@@ -1,0 +1,103 @@
+  \item Prezentacja zamówień\\
+  
+  Opis słowny - poniższe przypadki opisują dostęp i zarządzanie zamównieniami. W
+  tym celu wprowadzono panel z listą wszystkich zamówień, którą można przeglądać
+  oraz sprawdzać szczegóły poszczególnych pozycji. Po zaznaczeniu konkretnego
+  zamówienia jest możliwość wyboru wielu opcji, w tym modyfikacji.
+  
+  \begin{longtable}{|p{5cm}|p{7cm}|}
+ 	\hline
+	\textbf{Aktor} & Pracownik \\
+	\hline
+	\textbf{Warunki początkowe} & Pracownik zalogowany, posiada uprawnienia do
+	manipulacji zamówieniami
+	\\
+	\hline
+	\textbf{Opis przebiegu interakcji} & Wybór panelu zamówień, aktywacja wybranych
+	opcji
+	\\
+	\hline
+	\textbf{Sytuacje wyjątkowe} & brak \\
+	\hline
+	\textbf{Warunki końcowe} & Prezentacja listy zamówień, możliwość ich edycji \\
+	\hline
+ \end{longtable}
+  
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Pracownik \\
+  Opis: & Prezentacja panelu z listą wszystkich zamówień znajdujących się w~systemie
+  oraz możliwościami kontroli i zarządzania nimi.\\
+  \end{tabularx}
+	\begin{enumerate}
+	  \item Pracownik loguje się w Panelu Zarządzania
+	  \item Wybiera Panel Zarządzania Zamówieniami
+	  \item Wyświetlana jest lista zamówień z możliwością modyfikacji widoków
+	  oraz panelem opcji (wszystkie opisane w poniższych przypadkach użycia)
+	\end{enumerate}
+
+  \item Edycja, modyfikacja zamówień\\
+  \begin{tabularx}{\linewidth}{c X}
+  Aktor: & Pracownik \\
+  Opis: & Funkcjonalność umożliwia modyfikację produktów w zamówieniu oraz
+  zmianę danych odbiorcy.
+  \end{tabularx}
+	\begin{enumerate}
+	  \item Pracownik po autoryzacji w panelu sterowania systemu, przechodzi do
+	  panelu Zarządzania Zamówieniami (patrz Zamowienia przypadek użycia 1)
+	  \item Z wyświetlonej przez system listy zamówień, pracownik wybiera jeden
+	  element
+	  \item W celu edycji produktów:
+		\begin{enumerate}
+		  \item Wybiera opcję podglądu zawartości zamówienia
+		  \item Z wyświetlonej listy zamówionych produktów zaznacza jedną pozycję
+		  \item Wybiera opcję edycji
+		  \item Otrzymuje informacje o konkretnym produkcie (jego ID, szczegółowy opis)
+		  oraz zamówioną ilość oraz podsumowanie (cenę, informację o udzielonych rabatach na dany produkt)
+		  \item Pole z ilością produktu umożliwia modyfikację – wystarczy wprowadzić
+		  liczbę z zakresu od 1 do maksymalnej liczby aktualnie dostępnych produktów w
+		  magazynie (0 nie wchodzi w zakres bo do tego służy funkcja usunięcia)
+		\end{enumerate}
+	  \item W celu usunięcia produktu:
+		\begin{enumerate}
+		  \item Wybiera opcję podglądu zawartości zamówienia
+		  \item Z wyświetlonej listy zamówionych produktów zaznacza jedną pozycję
+		  \item Wybiera opcję Usuń
+		  \item System pyta o potwierdzenie i po akceptacji dokonuje wykluczenia
+		  produktu z zamówienia oraz wysyła powiadomienie do Zamawiającego
+		\end{enumerate}
+	  \item W celu dodania produktu:
+		\begin{enumerate}
+		  \item Wybiera opcję podglądu zawartości zamówienia
+		  \item Wybiera opcję Dodaj produkt
+		  \item Otworzony zostaje system zakupowy\\ 
+		  (przebieg wyboru produktu - opisany w przypadkach użycia odnoszących się do
+		  Produktów)
+		  \item Po wybraniu produktu system wyświetla informację o tym jakie zostaną
+		  wprowadzone zmiany i czeka na akceptację
+		  \item Po akceptacji, zamówienie zostaje zmodyfikowane (produkt dodany),
+		  koszt zaktualizowany oraz system informuje odbiorcę zamówienia (klienta) o
+		  zaszłych zmianach – za pomocą wiadomości email (z ewentualną poprawioną
+		  fakturą pro-forma, jeśli była zaznaczona taka opcja) 
+	  \end{enumerate} %koniec alternatywy Dodania produktu
+	\end{enumerate} %koniec UC Edycja, modyfikacja zamówień
+	
+  \item Usunięcie zamówienia w całości\\
+  \begin{tabularx}{\linewidth}{c X}
+  Aktor: & Pracownik \\
+  Opis: & Istnieje możliwość anulowania zamówienia – na życzenie klienta lub z
+  powodów biznesowych sklepu.
+  \end{tabularx}  
+	\begin{enumerate}
+	  \item Pracownik po autoryzacji w panelu sterowania systemu, przechodzi do
+	  panelu Zarządzania Zamówieniami (patrz Zamówienia przypadek użycia 1)
+	  \item Z wyświetlonej przez system listy zamówień, pracownik wybiera jeden
+	  element i wybiera opcję Usuń zamówienie
+	  \item System wyświetla ostrzeżenie (wraz ze szczegółową informacją o
+	  zamówieniu) i pyta o potwierdzenie
+	  \item Pracownik potwierdza chęć usunięcia danego zamówienia. Ma też możliwość
+	  wpisania krótkiego uzasadnienia tej operacji
+	  \item System dokonuje usunięcia oraz wysyła powiadomienie o anulowaniu
+	  zamówienia do zamawiającego (drogą elektroniczną)
+	\end{enumerate}
+
+	
