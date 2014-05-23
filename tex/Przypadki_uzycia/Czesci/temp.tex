@@ -1,0 +1,64 @@
+  \item Wprowadzenie dostawy części do magazynu \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Pracownik \\
+  Opis: & Możliwość wprowadzenia do systemu informacji o dostawie nowych części do magazynu.\\
+  \end{tabularx}
+   \begin{enumerate}
+    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję wprowadzenia dostawy.
+    \item System prezentuje widok wprowadzania dostawy, umożliwiający:
+    \begin{enumerate}
+      \item Dodanie typu części do dostawy.
+      \item Usunięcie wcześniej wprowadzonego typu części z dostawy.
+      \item Prezentację listy już wprowadzonych części.
+    \end{enumerate}
+    \item Pracownik dodaje nowe części według następującego schematu:
+    \begin{enumerate}
+      \item Pracownik wybiera przycisk umożliwiający dodanie typu części do dostawy.
+      \item System prezentuje listę części z możliwością wyszukiwania tak jak w punkcie \ref{wyszukiwanie-czesci}
+      \item Pracownik wybiera żądany typ części i wpisuje ilość sztuk (liczba naturalna większa od zera), jaka ma zostać dodana do aktualnego stanu magazynu.
+      \item Pracownik zatwierdza operację.
+      \item Powrót do widoku wprowadzania dostawy.
+    \end{enumerate}
+    \item System umożliwia zaimportowanie danych o dostawie z wcześniej wygenerowanych zamówień na dostawę (patrz punkt \ref{generowanie-zamowienia})
+    \item Po wprowadzeniu wszystkich informacji o dostawie, pracownik zatwierdza operację.
+    \item System prosi pracownika o potwierdzenie zamiaru wprowadzenia dostawy.
+    \item W przypadku potwierdzenia zamiaru przez pracownika, system modyfikuje stan magazynu zgodnie z danymi wprowadzonymi przez pracownika.
+    \item Powrót do Panelu Zarządzania Częściami.
+  \end{enumerate}
+  
+  \item Prezentacja stanu magazynu \label{prezentacja-stanu-magazynu} \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Pracownik \\
+  Opis: & Możliwość prezentacji stanu magazynu.\\
+  \end{tabularx}
+   \begin{enumerate}
+    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję prezentacji stanu magazynu.
+    \item System prezentuje listę części aktualnie znajdujących się w magazynie.
+  \end{enumerate}
+  
+  \item Prezentacja zmian stanu magazynu w zadanym okresie czasowym \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Pracownik \\
+  Opis: & Możliwość wyświetlenia zmian stanu magazynu w zadanym okresie czasowym.\\
+  \end{tabularx}
+   \begin{enumerate}
+    \item Tak jak w punkcie \ref{prezentacja-stanu-magazynu}
+    \item Pracownik podaje okres czasowy, z jakiego zmiany stanu magazynu mają być zaprezentowane.
+    \item System prezentuje listę zmian z zadanego okresu, czyli listę wszystkich operacji zmieniających liczbę sztuk części w magazynie, wraz z informacjami o tych operacjach (jaka część, ilość sztuk, data operacji).
+    \item System prezentuje wykres zależności całościowego stanu magazynu (liczba wszystkich części) od daty (daty pochodzą z zadanego wcześniej okresu czasowego).
+    \item Powrót do Panelu Zarządzania Częściami.
+  \end{enumerate}
+  
+  \item Prezentacja zmian ilości sztuk danej części w zadanym okresie czasowym \\
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Pracownik \\
+  Opis: & Możliwość wyświetlenia zmian stanu magazynu w zadanym okresie czasowym.\\
+  \end{tabularx}
+   \begin{enumerate}
+    \item Tak jak w punkcie \ref{prezentacja-stanu-magazynu}
+    \item Pracownik wyszukuje żądaną część i wybiera opcję wyświetlenia zmian ilości jej sztuk.
+    \item Pracownik podaje okres czasowy, z jakiego zmiany ilości sztuk danej części mają być zaprezentowane.
+    \item System prezentuje listę zmian z zadanego okresu, czyli listę wszystkich operacji zmieniających liczbę sztuk danej części, wraz z informacjami o tych operacjach (ilość sztuk, data operacji).
+    \item System prezentuje wykres zależności ilości sztuk danej części od daty (daty pochodzą z zadanego wcześniej okresu czasowego).
+    \item Powrót do Panelu Zarządzania Częściami.
+  \end{enumerate}

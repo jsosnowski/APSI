@@ -1,221 +1,24 @@
 \subsubsection{Opis przypadków użycia - części}
 
-Opis przypadków użycia wyjaśniające funkcjonalności związane z zarządzaniem
-częściami:
+Poniżej przedstawiono przypadki użycia związane z zarządzaniem częściami. W większości przypadków aktorem jest pracownik sklepu uprawniony do zarządzania częściami. Wyjątkiem jest lista części dostępnych do kupienia, którą może także wyświetlić klient.
 
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth,
+    height=0.5\textheight]{graphics/UseCase/Czesci/UseCaseDiagram.png}
+  \caption{Diagram przypadków użycia związanych z zarządzaniem częściami}
+\end{figure}
+
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth,
+    height=0.5\textheight]{graphics/UseCase/Czesci/DosatwyUseCase.png}
+  \caption{Diagram przypadków użycia związanych z zarządzaniem dostawami}
+\end{figure}
+
+\newpage
 \begin{enumerate}
-  \item Lista części \label{lista-czesci} \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Klient \\
-  Opis: & Możliwość wyświetlenia listy dostępnych części.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Klient uruchamia stronę internetową sklepu i wybiera opcję przeglądania listy części
-    \item System prezentuje listę części możliwych do kupienia.
-  \end{enumerate}
-  
-  \item Wyszukiwanie części \label{wyszukiwanie-czesci} \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Klient \\
-  Opis: & Możliwość wyszukania konkretnych części z listy wszystkich dostępnych części.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Tak jak w punkcie \ref{lista-czesci}
-    \item Klient wpisuje w wyszukiwarkę kryteria (z zakresu: kod, nazwa, opis, cena jednostkowa), według których części mają być wyszukane.
-    \item System wyszukuje części według zadanych kryteriów i prezentuje listę.
-  \end{enumerate}
-  
-  \item Dodanie części \label{dodanie-czesci} \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość dodania nowego typu części.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję dodania nowej części.
-    \item System prezentuje pracownikowi formatkę dodania nowej części, z możliwością wypełnienia następujących atrybutów części:
-    \begin{enumerate}
-      \item Kod części (generowany automatycznie, z możliością edycji przez pracownika)
-      \item Nazwa części
-      \item Opis części
-      \item Zdjęcie części (w jedym z popularnych formatów graficznych, takich jak JPG, PNG czy GIF)
-      \item Cena jednostkowa części
-      \item Widoczność części dla klientów (czy klienci będą mogli zobaczyć część na liście części możliwych do kupienia)
-      \item Minimalna liczba sztuk w magazynie
-    \end{enumerate}
-    \item Pracownik uzupełnia wymagane pola i zatwierdza operację.
-    \item System dodaje część do bazy danych i informuje użytkownika o zakończeniu operacji.
-  \end{enumerate}
-  
-  \item Usunięcie części \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość usunięcia danego typu części z bazy danych.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję wyświetlenia listy dostępnych części.
-    \item System prezentuje listę części tak jak w punkcie \ref{lista-czesci} z możliwością wyszukiwania tak jak w punkcie \ref{wyszukiwanie-czesci}.
-    \item Pracownik wyszukuje żądaną część i wybiera opcję jej usunięcia.
-    \item System sprawdza, czy w magazynie znajdują się części danego typu - jeśli tak (na magazynie znajduje się co najmniej 1 sztuka danego typu części), informuje o tym pracownika w formie ostrzeżenia. W przypadku akceptacji przez pracownika tego ostrzeżenia następuje kontynuacja do następnego punktu, w przeciwnym przypadku pracownik wraca do Panelu Zarządzania Częściami.
-    \item System prosi pracownika o potwierdzenie zamiaru usunięcia danego typu części.
-    \item W przypadku potwierdzenia zamiaru przez pracownika, system usuwa dany typ części z magazynu.
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
-  
-  \item Modyfikacja części \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość modyfikacji atrybutów danego typu części.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję wyświetlenia listy dostępnych części.
-    \item System prezentuje listę części z możliwością wyszukiwania tak jak w punkcie \ref{wyszukiwanie-czesci}
-    \item Pracownik wyszukuje żądaną część i wybiera opcję jej modyfikacji.
-    \item System prezentuje formatkę taką jak w punkcie \ref{dodanie-czesci} ale wypełnioną danymi części, której modyfikację wybrał pracownik.
-    \item Pracownik modyfikuje dane i zatwierdza operację.
-    \item System prosi pracownika o potwierdzenie zamiaru modyfikacji danego typu części.
-    \item W przypadku potwierdzenia zamiaru przez pracownika, system modyfikuje atrybuty danego typu części.
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
-  
-  \item Modyfikacja ilości sztuk części \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość modyfikacji ilości sztuk danej części znajdujących się aktualnie w magazynie.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję wyświetlenia listy dostępnych części.
-    \item System prezentuje listę części z możliwością wyszukiwania tak jak w punkcie \ref{wyszukiwanie-czesci}
-    \item Pracownik wyszukuje żądaną część i wybiera opcję modyfikacji jej stanu.
-    \item System prezentuje aktualną liczbę sztuk części i prosi o podanie nowej wartości.
-    \item Pracownik wpisuje nową wartość i zatwierdza operację.
-    \item System prosi pracownika o potwierdzenie zamiaru modyfikacji ilości sztuk danego typu części.
-    \item W przypadku potwierdzenia zamiaru przez pracownika, system modyfikuje ilość sztuk danego typu części.
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
-  
-  \item Modyfikacja widoczności części dla klientów \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość modyfikacji widoczności danej części dla klientów, czyli czy klienci będą mogli zobaczyć część na liście części możliwych do kupienia.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję wyświetlenia listy dostępnych części.
-    \item System prezentuje listę części z możliwością wyszukiwania tak jak w punkcie \ref{wyszukiwanie-czesci}
-    \item Pracownik wyszukuje żądaną część i wybiera opcję modyfikacji jej widoczności.
-    \item System prezentuje aktualną widoczność części i prosi o podanie nowej wartości (widoczna lub niewidoczna).
-    \item Pracownik wpisuje nową wartość i zatwierdza operację.
-    \item System prosi pracownika o potwierdzenie zamiaru modyfikacji widoczności danego typu części.
-    \item W przypadku potwierdzenia zamiaru przez pracownika, system modyfikuje widoczność danego typu części.
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
-  
-  \item Modyfikacja minimalnej liczby sztuk części \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość modyfikacji minimalnej liczby sztuk części, znajdujących się aktualnie w magazynie.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję wyświetlenia listy dostępnych części.
-    \item System prezentuje listę części z możliwością wyszukiwania tak jak w punkcie \ref{wyszukiwanie-czesci}
-    \item Pracownik wyszukuje żądaną część i wybiera opcję modyfikacji jej minimalnej liczby sztuk.
-    \item System prezentuje aktualną minimalną liczbę sztuk i prosi o podanie nowej wartości (liczba naturalna).
-    \item Pracownik wpisuje nową wartość i zatwierdza operację.
-    \item System prosi pracownika o potwierdzenie zamiaru modyfikacji minimalnej liczby sztuk części.
-    \item W przypadku potwierdzenia zamiaru przez pracownika, system modyfikuje minimalną liczbę sztuk części.
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
-  
-  \item Generowanie zamówienia na dostawę części \label{generowanie-zamowienia} \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość wygenerowania zamówienia na dostawę nowych części do magazynu.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję generowania zamówienia na dostawę.
-    \item System prezentuje widok generowania zamówienia na dostawę, umożliwiający:
-    \begin{enumerate}
-      \item Dodanie typu części do zamówienia.
-      \item Usunięcie wcześniej wprowadzonego typu części z zamówienia.
-      \item Prezentację listy już wprowadzonych części.
-    \end{enumerate}
-    \item System początkowo wypełnia listę tymi częściami, których ilość w magazynie spadła poniżej zadanego minimalnego poziomu. Części dodawane są w minimalnej ilości wystarczającej do tego, aby poziom ten został osiądnięty.
-    \item Pracownik dodaje nowe części według następującego schematu:
-    \begin{enumerate}
-      \item Pracownik wybiera przycisk umożliwiający dodanie typu części do zamówienia.
-      \item System prezentuje listę części z możliwością wyszukiwania tak jak w punkcie \ref{wyszukiwanie-czesci}
-      \item Pracownik wybiera żądany typ części i wpisuje ilość sztuk (liczba naturalna większa od zera), jaka ma zostać dodana do zamówienia.
-      \item Pracownik zatwierdza operację.
-      \item Powrót do widoku generowania zamówienia.
-    \end{enumerate}
-    \item Po wprowadzeniu wszystkich informacji o zamówieniu, pracownik zatwierdza operację.
-    \item System prosi pracownika o potwierdzenie zamiaru wygenerowania zamówienia.
-    \item W przypadku potwierdzenia zamiaru przez pracownika, system generuje plik PDF z zamówieniem na dostawę.
-    \item Pracownik pobiera plik i wysyła go do dostawcy.
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
-  
-  \item Wprowadzenie dostawy części do magazynu \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość wprowadzenia do systemu informacji o dostawie nowych części do magazynu.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję wprowadzenia dostawy.
-    \item System prezentuje widok wprowadzania dostawy, umożliwiający:
-    \begin{enumerate}
-      \item Dodanie typu części do dostawy.
-      \item Usunięcie wcześniej wprowadzonego typu części z dostawy.
-      \item Prezentację listy już wprowadzonych części.
-    \end{enumerate}
-    \item Pracownik dodaje nowe części według następującego schematu:
-    \begin{enumerate}
-      \item Pracownik wybiera przycisk umożliwiający dodanie typu części do dostawy.
-      \item System prezentuje listę części z możliwością wyszukiwania tak jak w punkcie \ref{wyszukiwanie-czesci}
-      \item Pracownik wybiera żądany typ części i wpisuje ilość sztuk (liczba naturalna większa od zera), jaka ma zostać dodana do aktualnego stanu magazynu.
-      \item Pracownik zatwierdza operację.
-      \item Powrót do widoku wprowadzania dostawy.
-    \end{enumerate}
-    \item System umożliwia zaimportowanie danych o dostawie z wcześniej wygenerowanych zamówień na dostawę (patrz punkt \ref{generowanie-zamowienia})
-    \item Po wprowadzeniu wszystkich informacji o dostawie, pracownik zatwierdza operację.
-    \item System prosi pracownika o potwierdzenie zamiaru wprowadzenia dostawy.
-    \item W przypadku potwierdzenia zamiaru przez pracownika, system modyfikuje stan magazynu zgodnie z danymi wprowadzonymi przez pracownika.
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
-  
-  \item Prezentacja stanu magazynu \label{prezentacja-stanu-magazynu} \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość prezentacji stanu magazynu.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Pracownik loguje się do Panelu Zarządzania Częściami i wybiera opcję prezentacji stanu magazynu.
-    \item System prezentuje listę części aktualnie znajdujących się w magazynie.
-  \end{enumerate}
-  
-  \item Prezentacja zmian stanu magazynu w zadanym okresie czasowym \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość wyświetlenia zmian stanu magazynu w zadanym okresie czasowym.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Tak jak w punkcie \ref{prezentacja-stanu-magazynu}
-    \item Pracownik podaje okres czasowy, z jakiego zmiany stanu magazynu mają być zaprezentowane.
-    \item System prezentuje listę zmian z zadanego okresu, czyli listę wszystkich operacji zmieniających liczbę sztuk części w magazynie, wraz z informacjami o tych operacjach (jaka część, ilość sztuk, data operacji).
-    \item System prezentuje wykres zależności całościowego stanu magazynu (liczba wszystkich części) od daty (daty pochodzą z zadanego wcześniej okresu czasowego).
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
-  
-  \item Prezentacja zmian ilości sztuk danej części w zadanym okresie czasowym \\
-  \begin{tabularx}{\linewidth}{ c X }
-  Aktor: & Pracownik \\
-  Opis: & Możliwość wyświetlenia zmian stanu magazynu w zadanym okresie czasowym.\\
-  \end{tabularx}
-   \begin{enumerate}
-    \item Tak jak w punkcie \ref{prezentacja-stanu-magazynu}
-    \item Pracownik wyszukuje żądaną część i wybiera opcję wyświetlenia zmian ilości jej sztuk.
-    \item Pracownik podaje okres czasowy, z jakiego zmiany ilości sztuk danej części mają być zaprezentowane.
-    \item System prezentuje listę zmian z zadanego okresu, czyli listę wszystkich operacji zmieniających liczbę sztuk danej części, wraz z informacjami o tych operacjach (ilość sztuk, data operacji).
-    \item System prezentuje wykres zależności ilości sztuk danej części od daty (daty pochodzą z zadanego wcześniej okresu czasowego).
-    \item Powrót do Panelu Zarządzania Częściami.
-  \end{enumerate}
+  \input{tex/Przypadki_uzycia/Czesci/Lista_czesci.tex}
+  \input{tex/Przypadki_uzycia/Czesci/Dodanie_czesci.tex}
+  \input{tex/Przypadki_uzycia/Czesci/Usuniecie_czesci.tex}
+  \input{tex/Przypadki_uzycia/Czesci/Modyfikacja_czesci.tex}
+  \input{tex/Przypadki_uzycia/Czesci/Generowanie_dostawy.tex}
 \end{enumerate}
