@@ -1,0 +1,47 @@
+\item Ustalanie urlopu \\
+
+	Opis słowny - w nowoczesnych firmach przyjaznych pracownikowi kwestia urlopu
+	jest niezwykle ważna. Po pierwsze konieczne jest zapewnienie firmie rąk do
+	pracy. Po drugie zadowolony pracownik jest najcennieszy, dlatego istotny jest
+	kompromis pomiędzy dniami urlopowymi, a pracującymi (globalnie, dla
+	wszystkich). Ta funkcja systemu umożliwia zgłaszanie chęci wykorzystania czasu
+	urlopu - wyrażenie swoich preferencji urlopowych przez pracownika
+
+  \begin{longtable}{|p{5cm}|p{7cm}|}
+ 	\hline
+	\textbf{Aktor} & Pracownik \\
+	\hline
+	\textbf{Warunki początkowe} & Pracownik zalogowany, posiada niewykorzystane
+	dni urlopowe\\
+	\hline
+	\textbf{Opis przebiegu interakcji} & Wybór panelu urlopów,
+	zaznaczenie preferowanych terminów, oczekiwanie na akceptację \\
+	\hline
+	\textbf{Sytuacje wyjątkowe} & Niezgodność liczby dni urlopu w stosunku do
+	zaznaczonego okresu preferowanego urlopu - wymagana korekta
+	\\
+	\hline
+	\textbf{Warunki końcowe} & Wysłanie preferencji urlopowych do akceptacji przez
+	kierownika
+	\\
+	\hline
+ \end{longtable}
+  
+
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Pracownik \\
+  \end{tabularx}
+  \begin{enumerate}
+    \item Pracownik uruchamia aplikację internetową sklepu i loguje się do systemu.
+    \item Pracownik wybiera panel urlopów.
+    \item System informuje pracownika o ilości dni urlopowych pozostałych do wykorzystania.
+    \item Pracownik dodaje do kalendarza firmowego nowe żądanie urlopu.
+    \item Pracownik uzupełnia dane dotyczące czasu przebywania na urlopie (datę początkową oraz datę końcową).
+    \item System sprawdza, czy żądanie pracownika jest poprawne (np. czy pracownik może wziąć tak długi urlop).
+    Jeśli nie, pracownik jest informowany o przyczynie błędu i musi ponownie wypełnić dane o urlopie.
+    \item System zapisuje żądanie urlopu i informuje użytkownika o zmianie statusu żądania
+    na~,,Oczekiwanie na odpowiedź kierownika''.
+    \item Kierownik przegląda żądanie zgodnie ze scenariuszem ,,Przeglądanie żądań urlopowych''.
+    \item Pracownik jest informowany o rozpatrzeniu żądania.
+  \end{enumerate} 
+  

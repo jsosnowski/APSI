@@ -1,0 +1,19 @@
+  \item Przeglądanie żądań urlopowych \\
+  
+  Opis słowny - preferencje odnośnie terminu wykorzystania zasłużonego urlopu
+  przez pracowników spływają do Kierownika i wymagają jego akceptacji. Ten
+  przypadek użycia nakreśla procedurę jaką należy wykonać w tym celu.
+  
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Kierownik \\
+  Opis: & Możliwość przeglądania i rozpatrywania żądań urlopowych napływających od pracowników.\\
+  \end{tabularx}
+  \begin{enumerate}
+    \item Kierownik loguje się do aplikacji internetowej systemu.
+    \item Kierownik wybiera panel zarządzania pracownikami i przechodzi do sekcji ,,Urlopy''.
+    \item System wyświetla kalendarz, w którym umieszczone są terminy urlopów.
+    \item Kierownik ustawia odpowiednie filtry urlopów (np. wyświetlanie tylko nierozpatrzonych żądań).
+    \item Kierownik wybiera jeden z urlopów i zmienia jego status.
+    \item System sprawdza czy zmiana statusu jest poprawna (np. czy nie wystąpiła zmiana statusu z ,,Zrealizowany'' na ,,Odwołany'').
+    \item W przypadku błędnej operacji system informuje o tym kierownika.
+  \end{enumerate}

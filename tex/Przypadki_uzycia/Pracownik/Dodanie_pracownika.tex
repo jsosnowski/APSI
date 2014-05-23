@@ -1,0 +1,56 @@
+  \item Dodawanie pracownika \\
+  
+  Opis słowny - ten przypadek użycia wspiera proces rozwoju firmy poprzez
+  zatrudnianie nowych pracowników. Dane na temat wszystkich osób związanych ze
+  sklepem są lepiej wykorzystywane jeśli są zarządzane przez system
+  informatyczny. Aby uruchomić tą procedurę należy mieć specjalne uprawnienia
+  jakie posiadają wyznaczeni pracownicy, czyli Kierownicy.
+  
+  \begin{longtable}{|p{5cm}|p{7cm}|}
+ 	\hline
+	\textbf{Aktor} & Kierownik \\
+	\hline
+	\textbf{Warunki początkowe} & Kierownik zalogowany, posiadający wszelkie dane
+	nowego pracownika\\
+	\hline
+	\textbf{Opis przebiegu interakcji} & Wybór panelu zarządzania sklepem,
+	wypełnienie danych pracownika i potwierdzenie zapisu \\
+	\hline
+	\textbf{Sytuacje wyjątkowe} & Błędne dane, dany pracownik już zarejestrowany \\
+	\hline
+	\textbf{Warunki końcowe} & Zarejestrowanie nowego pracownika w systemie \\
+	\hline
+ \end{longtable}
+  
+  \begin{tabularx}{\linewidth}{ c X }
+  Aktor: & Kierownik \\
+  \end{tabularx}
+   \begin{enumerate}
+    \item Kierownik uruchamia stronę internetową panelu zarządzania sklepem
+    i~wybiera opcję rejestracji.
+    \item Kierownik wprowadza dane osobowe zatrudnianego pracownika.
+    \item System sprawdza wstawione dane (czy istnieje już zarejestrowany
+    w~systemie użytkownik, czy istnieje podany adres e-mail itp.)
+    \item System wysyła na adres e-mail pracownika podany przez~kierownika
+    wiadomość powitalną wraz z~linkiem umożliwiającym aktywowanie konta oraz
+    ustalenie hasła.
+    \item W ciągu określonego, zdefiniowanego czasu pracownik odwiedza stronę
+    o~adresie przesłanym w~wiadomości powitalnej i ustala hasło dla konta.
+  \end{enumerate}
+
+	Dodawanie pracownika - scenariusz alternatywny - błąd danych
+	\begin{enumerate}
+	  \item Kroki 1-3 scenariusza głównego
+	  \item System wyświetla komunikat informujący o miejscu oraz typie błędu w
+	  wprowadzonych danych
+	  \item Dane zostają poprawione
+	  \item Kroki następne scenariusza głównego od 3 włącznie.
+	\end{enumerate}
+	
+	Dodawanie pracownika - scenariusz alternatywny - pracownik już zarejestrowany
+	\begin{enumerate}
+	  \item Kroki 1-3 scenariusza głównego
+	  \item System oświadcza, że wprowadzone dane odpowiadają istniejącemu już
+	  pracownikowi - wskazując pokrywające się informacje
+	  \item Po akceptacji, formularz jest odrzucany.
+	\end{enumerate}
