@@ -1,7 +1,33 @@
-  \item Wyrejestrowanie się klienta \\
+   \item Wyrejestrowanie się klienta \\
+ 
+ Opis słowny - jest to pierwszy przypadek użycia dla klienta, bez którego
+ pozostałe przypadki nie mają racji bytu. Akcje w nim opisane mają miejsce, gdy
+ użytkownik pierwszy raz pojawia się na stronie i po przejrzeniu oferty sklepu
+ (co dostępne jest także dla użytkowników niezalogowanych) decyduje się na
+ stworzenie konta i ewentualne rozpoczęcie zakupów. Obsługa tego przypadku
+ użycia wymaga poprawnego procesowania operacji rejestracji i jej potwierdzenia.
+ 
+ \begin{longtable}{|p{5cm}|p{7cm}|}
+ 	\hline
+	\textbf{Aktor} & Klient \\
+	\hline
+	\textbf{Warunki początkowe} & Klient zalogowany, posiadający konto w systemi \\
+	\hline
+	\textbf{Opis przebiegu interakcji} & Podjęcie decyzji o wyrejestrowaniu,
+	obsługa aktywnych zamówień
+	\\
+	\hline
+	\textbf{Sytuacje wyjątkowe} & Brak\\
+	\hline
+	\textbf{Warunki końcowe} & Usunięcie klienta z systemu\\
+	\hline
+ \end{longtable}
+ 
+  
+  
+  \item Wyrejestrowanie się klienta - scenariusz główny\\
   \begin{tabularx}{\linewidth}{ c X }
   Aktor: & Klient \\
-  Opis: & Klient ma możliwość w każdym momencie usunąć swoje konto z systemu.\\
   \end{tabularx}
   \begin{enumerate}
     \item Klient uruchamia witrynę internetową i loguje się na swoje konto
@@ -21,3 +47,15 @@
     \item W przypadku braku ponownej rejestracji dane zostają na stałe usunięte
     z firmowej bazy danych
   \end{enumerate}
+  
+  
+  
+  \begin{figure}[h!]
+    \includegraphics[width=\textwidth,
+    height=0.5\textheight]{graphics/UseCase/Klient/WyrejestrowanieSieKlientaSD.png}
+    \caption{Diagram sekwencji dla przypadku użycia Wyrejestrowanie Się Klienta
+    - scenariusz główny}
+\end{figure}
+  
+  
+ 
