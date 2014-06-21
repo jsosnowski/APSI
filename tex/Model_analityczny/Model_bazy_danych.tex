@@ -1,0 +1,426 @@
+\subsection{Model bazy danych}
+
+Ważnym elementem tworzonego systemu informatycznego jest baza danych
+przechowująca wszystkie informacje, które powinny być pamiętane trwale. Jak
+opisano w części dotyczącej sprzętu, wszystkie informacje powinny być
+przechowywane redundantnie, na przynajmniej dwóch niezależnych od siebie
+macierzach dyskowych. Pozwoli to na minimalizację problemów związanych z
+ewentualnym awariami i chwilowymi przerwami w dostępności.
+
+W czasie tworzenia projektu bazy danych opierano się przede wszystkim na
+stworzonym wcześniej diagramie klas. Większość klas została zamieniona na
+odpowiadające im tabele w bazie danych. W przypadku związków wiele-do-wielu
+konieczne było stworzenie dodatkowych tabel ``rozbijających''. Enumeracje
+zostały zamienione na osobne tabele tylko w przypadkach, w których
+istniało prawdopodobieństwo, że w następnych latach będą rozbudowane o kolejne
+pozycje. W przypadku enumeracji stałych zostały one rozwiązane jako ograniczenia
+(ang. constraints) na odpowiednich tabelach.
+
+Poniżej zaprezentowano model bazy danych wykorzystywanej w tworzonym systemie:
+
+\clearpage
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=\textwidth,
+    height=0.9\textheight]{graphics/Entity_Diagram.jpg}
+  \caption{Diagram encji w tworzonym modelu bazodanowym}
+\end{figure}
+
+
+Logiczny model bazy danych składa się z następujących tabel:
+
+\begin{enumerate}
+  \item Użytkownik
+  	\begin{enumerate}
+  	  \item Odpowiada za przechowywanie informacji o wszystkich osobach
+  	  zapisanych w systemie, zarówno pracownikach sklepu jak i użytkownikach.
+  	  Rozwiązuje problem przeniesienia dziedziczenia z modelu obiektowego do
+  	  modelu bazodanowego.
+  	  \item Decyzja o przechowywaniu danych o klientach i pracownikach w jednej
+  	  tabeli podyktowana jest chęcią przyśpieszenia wyszukiwania osób.
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_użytkownika & PRIMARY KEY & Integer(7,0) & NOT NULL, UNIQUE \\
+	\hline
+  	Imię & Pierwsze imię użytkownika & VARCHAR2(30) & - \\
+	\hline
+  	Nazwisko & Nazwisko użytkownika & VARCHAR2(50) & - \\
+	\hline
+  	Adres & Dane dotyczące wysyłki & VARCHAR2(80) & - \\
+	\hline
+  	E-mail & Adres internetowy do korespondencji & VARCHAR2(30) & REGEXP LIKE
+  	\texttt{(\b[A-Z0-9.\_\%+-]}
+  	\newline
+  	\texttt{+@[A-Z0-9.-]+}
+  	\newline
+  	\texttt{\.[A-Z]\{2,4\}\b)}
+  	 \\
+ 	\hline
+  	Telefon & Telefon kontaktowy do korespondencji & Integer(9,0) & - \\
+ 	\hline
+  	Pensja & Wynagrodzenie pracownika & Integer(10,2) & - \\
+	\hline
+  	Data przyjęcia do pracy & Data podpisania umowy & Date & - \\
+	\hline
+  	Rodzaj umowy & Na jakiej umowie jest zatrudniony pracownik & VARCHAR2(15) &
+  	CHECK IN (O PRACE, O DZIEŁO, ZLECENIE) \\
+	\hline
+  	Data\_zarejestrowania & Kiedy klient zarejestrował się w systemie &
+  	Date & -
+  	\\
+	\hline
+  	Stawka\_rabatu & Dostępna dla stałych klientów & Integer(2,0) & CHECK <100 \&
+  	>0
+  	\\
+    \hline
+	\caption{Opis atrybutów w tabeli Użytkownik}
+	\end{longtable}}
+ \item Uprawnienia
+  	\begin{enumerate}
+  	  \item Tabela zawierająca uprawnienia, jakie można nadać użytkownikom,
+  	  zarówno klientom jak i pracownikom
+  	  \item Zbiory uprawnień są różne dla klientów i pracowników, jednak mogą
+  	  zawierać części wspólne (np. prawo do przeglądania produktów)
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_uprawnień & PRIMARY KEY & Integer(2,0) & NOT NULL, UNIQUE \\
+  	\hline
+  	Nazwa\_uprawnień & Nazwa dodana dla wygody użytkowników & VARCHAR2(30) & - 
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Uprawnienia}
+	\end{longtable}}
+  \item Uprawnienia\_użytkownika
+  	\begin{enumerate}
+  	  \item Tabela rozbijająca związek wiele-do-wielu pomiędzy tabelami
+  	  Uprawnienia i Użytkownik
+  	  \item Nie zawiera innych atrybutów niż klucze obce
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	ID\_użytkownika & FOREIGN KEY REFERENCES Użytkownik.ID\_użytkownika  &
+  	Integer (7,0) & NOT NULL
+  	\\
+  	\hline
+  	ID\_uprawnień & FOREIGN KEY REFERENCES Uprawnienia.ID\_uprawnień &
+  	Integer(2,0)) & NOT NULL
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Uprawnienia\_użytkownika}
+	\end{longtable}}
+  \item Urlop
+  	\begin{enumerate}
+  	  \item Tabela pozwalająca na przechowanie danych o urlopach pracowniczych
+  	  \item Zawiera informacje na temat czasu trwania, daty rozpoczęcia i
+  	  zakończenia oraz inne dane
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	ID\_pracownika & FOREIGN KEY REFERENCES Użytkownik.ID\_użytkownika  &
+  	Integer(7,0) & NOT NULL
+  	\\
+  	\hline
+  	ID\_urlopu & PRIMARY KEY & Integer(5,0) & NOT NULL, UNIQUE  \\
+  	\hline
+  	Data\_rozpoczęcia & Data rozpoczęcia urlopu & Date & -  \\
+  	\hline
+  	Data\_zakończenia & Data zakończenia urlopu & Date & Data\_zakończenia >=
+  	Data\_rozpoczęcia
+  	\\
+  	\hline
+  	CzyPłatny & Informacja czy urlop jest płatny czy nie & Integer(1,0) & CHECK
+  	IN (1,0) \\
+  	\hline
+  	Powód & Jaki jest powód urlopu (wypoczynkowy, leczniczy itp.) & VARCHAR2(100)
+  	& - \\
+  	\hline
+	\caption{Opis atrybutów w tabeli Urlop}
+	\end{longtable}}
+  \item Wiadomość
+  	\begin{enumerate}
+  	  \item Wiadomość przekazywana pomiędzy pracownikami i klientami lub pomiędzy
+  	  pracownikami
+  	  \item Służy do usprawnienia wymiany informacji
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_użytkownika1 & FOREIGN KEY REFERENCES Użytkownik.Id\_użytkownika  &
+  	Integer(7,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_użytkownika2 & FOREIGN KEY REFERENCES Użytkownik.Id\_użytkownika &
+  	Integer(7,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_wiadomości & PRIMARY KEY & Integer(9,0) & NOT NULL, UNIQUE  \\
+  	\hline
+  	Treść\_wiadomości & Wiadomość przekazywana między użytkownikami &
+  	VARCHAR2(500) & -
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Wiadomość}
+	\end{longtable}}
+  \item Typ\_Wiadomości
+  	\begin{enumerate}
+  	  \item Reprezentacja enumeracji TYP\_WIADOMOŚCI z modelu obiektowego
+  	  \item Stworzona jako osobna tabela z uwagi na możliwość rozszerzania typów 
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_wiadomości & FOREIGN KEY REFERENCES Wiadomość.Id\_wiadomości  &
+  	Integer(9,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_typu & PRIMARY KEY & Integer(2,0) & NOT NULL, UNIQUE  \\
+  	\hline
+  	Nazwa\_rodzaju & Nazwa stworzona dla wygody użytkowników & VARCHAR2(20) &
+  	-
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Typ\_wiadomości}
+	\end{longtable}}
+  \item Opinia
+  	\begin{enumerate}
+  	  \item Opinie wystawiane są przez klientów po odebraniu zamówienia
+  	  \item Mogą dotyczyć zarówno zamówienia, pojedynczej części jak i ogólnie
+  	  sklepu
+  	  \item Z tego też powodu nie istnieje związek pomiędzy tabelą Opinia a
+  	  tabelą Zamówienie czy Część
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_użytkownika & FOREIGN KEY REFERENCES Użytkownik.Id\_użytkownika &
+  	Integer(7,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_Opinii & PRIMARY KEY & Integer(9,0) & NOT NULL, UNIQUE  \\
+  	\hline
+  	Treść\_opinii & Opinia przedstawiona przez użytkownika & VARCHAR2(500) & - \\
+  	\hline
+	\caption{Opis atrybutów w tabeli Opinia}
+	\end{longtable}}
+  \item Zamówienie
+  	\begin{enumerate}
+  	  \item Tabela opisująca zamówienie złożone przez klienta
+  	  \item Może się składać zarówno ze zestawów (złożonych z części) jak i z
+  	  samych części
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_użytkownika & FOREIGN KEY REFERENCES Użytkownik.Id\_użytkownika  &
+  	Integer(7,0) & -
+  	\\
+  	\hline
+  	Id\_zamówienia & PRIMARY KEY & Integer(9,0) & NOT NULL, UNIQUE  \\
+  	\hline
+  	Koszt\_zamówienia & Całkowity koszt zamówienia wraz z wysyłką & Integer(7,2))
+  	& -
+  	\\
+  	\hline
+  	Czas złożenia & Kiedy zamówienie zostało złożone (ma znaczenie przy czasie
+  	realizacji) & Date & -
+  	\\
+ 	\hline
+  	Sposób płatności & Jak użytkownik opłaci zamówienie (kartą, za pobraniem
+  	itp.) & VARCHAR2(30) & -
+  	\\
+  	\hline
+	\caption{Dostępne aplikacje mobilne}
+	\end{longtable}}
+  \item Zestaw\_w\_zamówieniu
+  	\begin{enumerate}
+  	  \item Tabela rozbijająca związek wiele-do-wielu pomiędzy tabelami Zestaw
+  	  oraz Zamówienie
+  	  \item Nie posiada własnych atrybutów poza kluczami obcymi
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_zamówienia & FOREIGN KEY REFERENCES Zamówienie.Id\_zamówienia  &
+  	Integer(9,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_zestawu & FOREIGN KEY REFERENCES Zestaw.Id\_zestawu & Integer(4,0) & NOT
+  	NULL
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Zestaw\_w\_zamówieniu}
+	\end{longtable}}
+  \item Dostawa
+  	\begin{enumerate}
+  	  \item Opis informacji, z jakiej dostawy możliwe jest zebranie części do
+  	  konkretnego zamówienia
+  	  \item Dostawy tego rodzaju określane są przez firmy dostawcze w reakcji na
+  	  zapotrzebowanie ze strony sklepu (już po złożeniu zamówienia)
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_firmy & FOREIGN KEY REFERENCES Firma\_dostawcza.Id\_firmy & Integer(4,0)
+  	& NOT NULL \\
+  	\hline
+  	Id\_zamówienia & FOREIGN KEY REFERENCES
+  	Zamówienie.Id\_zamówienia & Integer(9,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_dostawy & PRIMARY KEY & Integer(8,0) & NOT NULL, UNIQUE  \\
+  	\hline
+  	Nazwa & Nazwa kodowa dostawy (przydatna przy identyfikacji) & VARCHAR2(50) &
+  	-
+  	\\
+  	\hline
+  	Cena & Całkowity koszt dostawy (koszt zamówienia + koszt transportu) & 
+  	Integer(7,2) & -
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Dostawa}
+	\end{longtable}}
+  \item Firma\_dostawcza
+  	\begin{enumerate}
+  	  \item Opis firmy dostawczej, która dostarcza potrzebne do zamówienia
+  	  produkty
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_firmy & PRIMARY KEY  & Integer(4,0) & NOT NULL, UNIQUE \\
+  	\hline
+  	Telefon & Numer do korespondencji & VARCHAR2(11) & -  \\
+  	\hline
+  	Adres & Adres firmy (lub jej magazynu) & VARCHAR2(50) & -  \\
+  	\hline
+  	E-mail & Adres internetowy do korespondencji & VARCHAR2(30) & REGEXP LIKE
+  	\texttt{(\b[A-Z0-9.\_\%+-]}
+  	\newline
+  	\texttt{+@[A-Z0-9.-]+}
+  	\newline
+  	\texttt{\.[A-Z]\{2,4\}\b)}
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Firma\_dostawcza}
+	\end{longtable}}
+  \item Część
+  	\begin{enumerate}
+  	  \item Pojedyncza część rowerowa (pedał, siodełko, przerzutka itp.)
+  	  \item Z pojedynczych części składają się zarówno zestawy jak i zamówienia
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Nr\_identyfikacyjny & PRIMARY KEY & Integer(6,0) & NOT NULL, UNIQUE \\
+  	\hline
+  	Nazwa & Przydatna przy wyszukiwaniu & VARCHAR2(60) & \\
+  	\hline
+  	Cena  & Koszt części w danym momencie czasowym & Integer(7,2) &  \\
+  	\hline
+	\caption{Opis atrybutów w tabeli Część}
+	\end{longtable}}
+  \item Zestaw
+  	\begin{enumerate}
+  	  \item Zestawy składają się z dwóch lub więcej części
+  	  \item Ich cena może być niższa niż sumaryczny koszt części (na przykład
+  	  wskutek promocji)
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Id\_zestawu & PRIMARY KEY  & Integer(5,0) & NOT NULL, UNIQUE \\
+  	\hline
+  	Nazwa & Nazwa zestawu, przydatna przy przeglądaniu & VARCHAR2(60) & -  \\
+  	\hline
+	\caption{Opis atrybutów w tabeli Zestaw}
+	\end{longtable}}
+  \item Część\_w\_zamówieniu
+  	\begin{enumerate}
+  	  \item Tabela pomocnicza, rozbijająca związek wiele-do-wielu pomiędzy
+  	  tabelami Część i Zamówienie
+  	  \item Nie zawiera własnych atrybutów poza kluczami obcymi
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Nr\_identyfikacyjny & FOREIGN KEY REFERENCES Część.Nr\_identyfikacyjny  &
+  	Integer(6,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_zamówienia & FOREIGN KEY REFERENCES Zamówienie.Id\_zamówienia &
+  	Integer(9,0) & NOT NULL
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Część\_w\_zamówieniu}
+	\end{longtable}}
+  \item Część\_w\_zestawie
+  	\begin{enumerate}
+  	  \item Tabela rozbijająca związek wiele-do-wielu pomiędzy tabelami Część i
+  	  Zestaw
+  	  \item Nie posiada własnych atrybutów poza kluczami obcymi
+  	\end{enumerate}
+  	{\footnotesize
+  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\hline
+  	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
+  	\textbf{Ograniczenia} \\
+  	\hline
+  	Nr\_identyfikacyjny & FOREIGN KEY REFERENCES Część.Nr\_identyfikacyjny  &
+  	Integer(6,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_zestawu & FOREIGN KEY REFERENCES Zestaw.Id\_zestawu & Integer(5,0) &
+  	NOT NULL
+  	\\
+  	\hline
+	\caption{Opis atrybutów w tabeli Część\_w\_zestawie}
+	\end{longtable}}
+\end{enumerate}
