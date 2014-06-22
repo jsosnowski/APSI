@@ -161,20 +161,22 @@ Logiczny model bazy danych składa się z następujących tabel:
   	  \item Służy do usprawnienia wymiany informacji
   	\end{enumerate}
   	{\footnotesize
-  	\begin{longtable}{|p{3cm}|p{5cm}|p{2.5cm}|p{2.5cm}|}
+  	\begin{longtable}{|p{3.3cm}|p{5cm}|p{2.6cm}|p{2.5cm}|}
   	\hline
   	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
   	\textbf{Ograniczenia} \\
   	\hline
-  	Id\_użytkownika1 & FOREIGN KEY REFERENCES Użytkownik.Id\_użytkownika  &
-  	Integer(7,0) & NOT NULL
-  	\\
-  	\hline
-  	Id\_użytkownika2 & FOREIGN KEY REFERENCES Użytkownik.Id\_użytkownika &
-  	Integer(7,0) & NOT NULL
-  	\\
-  	\hline
   	Id\_wiadomości & PRIMARY KEY & Integer(9,0) & NOT NULL, UNIQUE  \\
+  	\hline
+  	Id\_typu & FOREIGN KEY REFERENCES Typ\_Wiadomości & Integer(2,0) & NOT NULL \\
+  	\hline
+  	Id\_użytkownika\_src & FOREIGN KEY REFERENCES Użytkownik.Id\_użytkownika  &
+  	Integer(7,0) & NOT NULL
+  	\\
+  	\hline
+  	Id\_użytkownika\_dest & FOREIGN KEY REFERENCES Użytkownik.Id\_użytkownika &
+  	Integer(7,0) & NOT NULL
+  	\\
   	\hline
   	Treść\_wiadomości & Wiadomość przekazywana między użytkownikami &
   	VARCHAR2(500) & -
@@ -192,10 +194,6 @@ Logiczny model bazy danych składa się z następujących tabel:
   	\hline
   	\textbf{Nazwa atrybutu} & \textbf{Znaczenie atrybutu} & \textbf{Typ danych} &
   	\textbf{Ograniczenia} \\
-  	\hline
-  	Id\_wiadomości & FOREIGN KEY REFERENCES Wiadomość.Id\_wiadomości  &
-  	Integer(9,0) & NOT NULL
-  	\\
   	\hline
   	Id\_typu & PRIMARY KEY & Integer(2,0) & NOT NULL, UNIQUE  \\
   	\hline
